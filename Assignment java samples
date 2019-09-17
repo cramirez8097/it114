@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,9 +10,10 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         
-    
+       Random r = new Random();
       
        List<String> strList = new ArrayList<String>();
+       List<String> shuffledList = new ArrayList<String>();
         strList.add("Eel");
         strList.add("Cat");
         strList.add("Dog");
@@ -20,8 +22,7 @@ public class Main {
         strList.add("Ant");
         Collections.sort(strList);
         Collections.reverse(strList);
-        //Collections.shuffle(strList);
-        //for(String str: strList) System.out.print(" "+str);
+        
     
         List<Integer> numlist = Arrays.asList(0,1,2,3,4,5,6,7,8,9);
       	int sum = numlist.stream().mapToInt(Integer::intValue).sum();
@@ -34,7 +35,22 @@ public class Main {
         }
       }
        System.out.println(sum);   
-       for(String str: strList) System.out.print(" "+str);
+      for(String str: strList) System.out.print(" "+str);
+      
+      
+    // create the for loop which counts down the number of items in the list 
+      for (int i = strList.size(); i > 0; i--)
+{
+    //Randomly select one of the remaining strings in the list 
+    int j = r.nextInt(i);
+
+    //Step 3: Place the randomly chosen list into a temp location
+        String temp = strList.get(j);
+    shuffledList.add(temp);
+
+    //Step 4: Remove the selected removes item from list 
+    strList.remove(j);
+}       for(String str: strList) System.out.print(" "+str);
+
       
     } }
-
