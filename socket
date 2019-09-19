@@ -1,0 +1,39 @@
+package com.nt.example.sockets;
+
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SampleSocketServer{
+	public static void start(int port){
+		System.out.println("Waiting for Client connection...");
+		SeverSocket serverSocket;
+		try {
+		ServerSocket serverSocket= new SeverSocket(port);
+		Socket clientSocket = serverSocket.accept();
+		PrintWriter out = new PrinterWriter(
+				clientSocket.getOutputStream(), true);
+		BufferedReader in = new  BufferedReader(
+				new InputStreamReader(
+						clientSocket.getInputStream()));
+		}{
+			System.out.println("client connected waaitng on message");
+			String fromClient="", toClient="";
+			while((fromClient= in.readLine()) !=null{
+				System.out.println("messahe from client:"+ fromClient);
+				if("kill server".equalsIgnoreCase(fromClient)) {
+					System.out.println("Client klled server");
+					break;
+				}
+			}
+		}
+	   catch(Exception e) {
+		   e.printStackTrace();
+	   }
+	}
+ public static void main(String[] args) {
+ System.out.println("Starting secer");
+ SAmpleSockerServer server = new SampleSocketServer();
+ server.start(3001);
+ System.out.println("Sever stopped");
+ }
+}
