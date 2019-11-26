@@ -49,17 +49,33 @@ public static void main(String args[]) throws UnknownHostException, IOException,
 	addInt();
 	addWis();
 	addCha();
+	System.out.println("Enter a Message:");
         line=br.readLine(); 
         while(line.compareTo("QUIT")!=0){
+		if(line.equals("roll20")== true){       			
+		roll20();
+       		 }
+		if(line.equals("roll12")== true){        			
+		roll12();
+       		 }
+		if(line.equals("roll10")== true){;        			
+		roll10();
+       		 }
+		if(line.equals("roll8")== true){       			
+		roll8();
+       		 }
+		if(line.equals("roll6")== true){  			
+		roll6();
+       		 }
+		if(line.equals("roll4")== true){     			
+		roll4();
+       		 }
                 os.println(line);
                 os.flush();
-                //response=is.readLine();
                 System.out.println(pname+": "+line);     
                 line=br.readLine();
 		}
-        if(br.readLine() == "roll"){
-        			roll();
-        }	
+        	
         }catch(IOException e){
         e.printStackTrace();
         System.out.println("Read Error");
@@ -73,58 +89,85 @@ public static void main(String args[]) throws UnknownHostException, IOException,
     }
 
 }
-
-static double roll(){
- double x = (Math.random()*((20-1)+1))+1;
+//dice roll methods 
+static int roll20(){
+ int x = (int)(Math.random()*((20-1)+1))+1;
  System.out.println(x);
  return x;
-
 }
-static double rollstat(int x){
-double y= roll();
+static int roll12(){
+ int x = (int)(Math.random()*((12-1)+1))+1;
+ System.out.println(x);
+ return x;
+}
+static int roll10(){
+ int x = (int)(Math.random()*((10-1)+1))+1;
+ System.out.println(x);
+ return x;
+}
+static int roll8(){
+ int x = (int)(Math.random()*((8-1)+1))+1;
+ System.out.println(x);
+ return x;
+}
+static int roll6(){
+ int x = (int)(Math.random()*((20-1)+1))+1;
+ System.out.println(x);
+ return x;
+}
+static int roll4(){
+ int x = (int)(Math.random()*((4-1)+1))+1;
+ System.out.println(x);
+ return x;
+}
+//non functioning stat roll
+static int rollstat(int x){
+int y= roll20();
 System.out.println(x+y);
 return y;
 }
-
-static double addStr(){
+//saving stats as variables 
+static int addStr(){
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter Strength");
-double str = sc.nextDouble();
+int str = sc.nextInt();
 return str;
 }
-static double addDex(){
+static int addDex(){
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter Dexterity");
-double dex = sc.nextDouble();
+int dex = sc.nextInt();
 return dex;
 }
-static double addCon(){
+static int addCon(){
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter Constitution");
-double con = sc.nextDouble();
+int con = sc.nextInt();
 return con;
 }
-static double addInt(){
+static int addInt(){
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter Intelligence");
-double intl = sc.nextDouble();
+int intl = sc.nextInt();
 return intl;
 }
-static double addWis(){
+static int addWis(){
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter Wisdom");
-double wis = sc.nextDouble();
+int wis = sc.nextInt();
 return wis;
 }
-static double addCha(){
+static int addCha(){
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter Charisma");
-double cha = sc.nextDouble();
+int cha = sc.nextInt();
 return cha;
 }
-static double rollStr(){
-double x = rollstat(1);
-return x;
+
+//not function stat rolls
+static int rollStr(){
+int y = rollstat(1);
+return y;
 }
 static double rollDex(){
 double x = rollstat(1);
