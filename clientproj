@@ -1,0 +1,139 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+public class Client {
+
+public static void main(String args[]) throws UnknownHostException, IOException, ClassNotFoundException, InterruptedException{
+
+
+    InetAddress address=InetAddress.getLocalHost();
+    Socket s1=null;
+    String line=null;
+    String pname=null;
+    BufferedReader br=null;
+    BufferedReader is=null;
+    PrintWriter os=null;
+    public static double str = 0;
+    public static double cos = 0;
+    public static double intl = 0;
+    public static double wis = 0;
+    public static double cha = 0;
+    public static double dex = 0;
+
+    try {
+        s1=new Socket(address, 3001); 
+        br= new BufferedReader(new InputStreamReader(System.in));
+        is=new BufferedReader(new InputStreamReader(s1.getInputStream()));
+        os= new PrintWriter(s1.getOutputStream());
+    }catch (IOException e){
+        e.printStackTrace();
+        System.err.print("IO Exception");
+    }
+    
+    System.out.println("Enter Message, Enter QUIT to end:");
+    String response=null;
+    try{
+	System.out.println("Enter your name:");
+        pname = br.readLine(); 
+	os.println(pname);
+	os.flush();
+        line=br.readLine(); 
+        while(line.compareTo("QUIT")!=0){
+                os.println(line);
+                os.flush();
+                //response=is.readLine();
+                System.out.println(pname+": "+line);     
+                line=br.readLine();
+		}
+        if(br.readLine() == "roll"){
+        			roll();
+        }	
+        }catch(IOException e){
+        e.printStackTrace();
+        System.out.println("Read Error");
+        }finally{
+        is.close();
+        os.close();
+	br.close();
+	s1.close();
+        System.out.println("Connection Terminated");
+
+    }
+
+}
+
+static double roll(){
+ double x = (Math.random()*((20-1)+1))+1;
+ System.out.println(x);
+ return x;
+
+}
+static double rollstat(int x){
+double y= roll();
+System.out.println(x+y);
+return y;
+}
+
+static double addStr(){
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter Strength");
+double str = sc.nextDouble();
+return str;
+}
+static double addDex(){
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter Dexterity");
+double dex = sc.nextDouble();
+return dex;
+}
+static double addCon(){
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter Constitution");
+double con = sc.nextDouble();
+return con;
+}
+static double addInt(){
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter Intelligence");
+double intl = sc.nextDouble();
+return intl;
+}
+static double addWis(){
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter Wisdom");
+double wis = sc.nextDouble();
+return wis;
+}
+static double addCha(){
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter Charisma");
+double cha = sc.nextDouble();
+return cha;
+}
+static double rollStr(){
+double x = rollstat(str);
+return x;
+}
+static double rollDex(){
+double x = rollstat(dex);
+return x;
+}
+static double rollCon(){
+double x = rollstat(con);
+return x;
+}
+static double rollInt(){
+double x = rollstat(intl);
+return x;
+}
+static double rollCha(){
+double x = rollstat(cha);
+return x;
+}
+}
