@@ -19,12 +19,12 @@ public static void main(String args[]) throws UnknownHostException, IOException,
     BufferedReader br=null;
     BufferedReader is=null;
     PrintWriter os=null;
-    public static double str = 0;
-    public static double cos = 0;
-    public static double intl = 0;
-    public static double wis = 0;
-    public static double cha = 0;
-    public static double dex = 0;
+   double str = 0;
+    double cos = 0;
+    double intl = 0;
+    double wis = 0;
+    double cha = 0;
+    double dex = 0;
 
     try {
         s1=new Socket(address, 3001); 
@@ -43,6 +43,12 @@ public static void main(String args[]) throws UnknownHostException, IOException,
         pname = br.readLine(); 
 	os.println(pname);
 	os.flush();
+	addStr();
+	addDex();
+	addCon();
+	addInt();
+	addWis();
+	addCha();
         line=br.readLine(); 
         while(line.compareTo("QUIT")!=0){
                 os.println(line);
@@ -117,23 +123,23 @@ double cha = sc.nextDouble();
 return cha;
 }
 static double rollStr(){
-double x = rollstat(str);
+double x = rollstat(1);
 return x;
 }
 static double rollDex(){
-double x = rollstat(dex);
+double x = rollstat(1);
 return x;
 }
 static double rollCon(){
-double x = rollstat(con);
+double x = rollstat(1);
 return x;
 }
 static double rollInt(){
-double x = rollstat(intl);
+double x = rollstat(1);
 return x;
 }
 static double rollCha(){
-double x = rollstat(cha);
+double x = rollstat(1);
 return x;
 }
 }
