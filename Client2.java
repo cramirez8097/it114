@@ -24,7 +24,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class Client2 {
-	String      appName     = "D&D v2";
+	String      appName     = "D&D v3";
 	Client2     Client2;
 	JFrame      newFrame    = new JFrame(appName);
 	JButton     sendMessage;
@@ -276,7 +276,7 @@ public class Client2 {
 				public void run() {
 					try {
 						while(!server.isClosed()) {
-							System.out.println("Waiting for input");
+							System.out.println("Send a Message!");
 							String line = si.nextLine();
 							if(!"quit".equalsIgnoreCase(line) && line != null) {
 								out.println(line);
@@ -288,7 +288,7 @@ public class Client2 {
 						}
 					}
 					catch(Exception e) {
-						System.out.println("Client shutdown");
+						System.out.println("Shuting down");
 					}
 					finally {
 						close();
@@ -304,7 +304,7 @@ public class Client2 {
 					try {
 						String fromServer = "";
 						while(!server.isClosed() && (fromServer = in.readLine()) != null) {
-							System.out.println("Replay from server: " + fromServer);
+							System.out.println("Reply from server: " + fromServer);
 						}
 						System.out.println("Stopping server listen thread");
 					}
@@ -351,43 +351,34 @@ public class Client2 {
 		}
 	}
 	public static void main(String[] args) {
-
-		SwingUtilities.invokeLater(new Runnable() {
-								@Override
-								public void run() {
-										try {
-												UIManager.setLookAndFeel(UIManager
-																.getSystemLookAndFeelClassName());
-										} catch (Exception e) {
-												e.printStackTrace();
-										}
-										Client2 Client = new Client2();
-										Client.preDisplay();
-								}
-						});
-
-
-		Client2 client = new Client2();
-
-		int port = -1;
-
-		try{
-			//not safe but try-catch will get it
-			port = Integer.parseInt(args[0]);
-		}
-		catch(Exception e){
-			System.out.println("Invalid port");
-		}
-		if(port == -1){
-			return;
-		}
-		client.connect("127.0.0.1", port);
-		try {
-			//if start is private, it's valid here since this main is part of the class
-			client.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
+	SwingUtilities.invokeLater(new Runnable() {
+	@Override
+        public void run() {
+	try {
+	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	} catch (Exception e) {
+        e.printStackTrace();
+}
+	Client2 Client = new Client2();
+	Client.preDisplay();
+}
+});
+	Client2 client = new Client2();
+	int port = -1;
+	try{	
+	port = Integer.parseInt(args[0]);
+}
+	catch(Exception e){
+	System.out.println("Incorrect port");
+}
+	if(port == -1){
+		return;
+}
+	client.connect("127.0.0.1", port);
+	try {
+	 client.start();
+	} catch (IOException e) {
+	e.printStackTrace();
+}
+}
 }
